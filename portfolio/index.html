@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>가게피드 · 동네 가게 인스타 카드뉴스 제작</title>
+<meta name="description" content="카페·네일숍·꽃집·빵집 사장님을 위한 인스타그램 카드뉴스 제작. 가게 정보만 보내주시면 24시간 안에 5장 초안을 드려요. 한 세트 3만원.">
+<link rel="preload" href="fonts/Pretendard-Bold.subset.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/Pretendard-Regular.subset.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="band" id="top">
+  <a class="wordmark" href="#top">가게피드</a>
+  <p class="avail">이번 주 주문 받는 중.<br>평일 저녁·주말에 작업해요.</p>
+  <ul class="services" aria-label="하는 일">
+    <li>카드뉴스 5장 세트</li>
+    <li>신메뉴·이벤트·휴무 공지</li>
+    <li>문구까지 대신 작성</li>
+    <li>Canva 편집 링크 제공</li>
+    <li>월 운영 패키지</li>
+  </ul>
+  <ul class="kinds" aria-label="작업하는 업종">
+    <li>카페</li><li>네일숍</li><li>꽃집</li><li>빵집</li><li>공방·향수</li>
+  </ul>
+  <nav class="links" aria-label="페이지 안내">
+    <a href="#work">작업</a>
+    <a href="#price">가격</a>
+    <a class="go" href="#order">주문 문의</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero" aria-labelledby="h1">
+  <h1 id="h1">사장님 인스타, 5장이면 됩니다</h1>
+  <p class="sub">가게 정보만 보내주시면 24시간 안에 카드뉴스 5장 초안을 드려요. 한 세트 3만원.</p>
+  <a class="btn cta" href="#order">주문 문의하기</a>
+
+  <div class="sheet" id="sheet">
+    <!-- 런은 script.js 가 SETS 로 채운다 -->
+  </div>
+  <p class="sheet-note" id="sheet-note" aria-live="polite">위 카드는 모두 이 페이지를 위해 만든 샘플이에요. 가게 이름과 가격은 가상입니다.</p>
+</section>
+
+<section class="try" aria-labelledby="try-h">
+  <div class="try-text">
+    <h2 id="try-h">우리 가게로 바꿔보기</h2>
+    <p>가게 이름과 업종을 고르면 표지가 바로 바뀌어요. 실제 작업도 이 틀에서 시작합니다.</p>
+    <form class="try-form" id="try-form" onsubmit="return false">
+      <label for="try-name">가게 이름</label>
+      <input id="try-name" name="name" maxlength="14" value="오늘의 온도 커피" autocomplete="off">
+      <label for="try-kind">업종</label>
+      <select id="try-kind" name="kind">
+        <option value="0">카페</option>
+        <option value="1">네일숍</option>
+        <option value="2">꽃집</option>
+        <option value="3">빵집</option>
+        <option value="4">향수·공방</option>
+      </select>
+    </form>
+  </div>
+  <figure class="try-card" id="try-card" aria-live="polite">
+    <img id="try-img" src="work/cafe-blank.jpg" width="540" height="675" alt="카페 가을 한정 메뉴 표지 샘플">
+    <figcaption class="try-shop" id="try-shop">오늘의 온도 커피</figcaption>
+  </figure>
+</section>
+
+<section class="work" id="work" aria-labelledby="work-h">
+  <h2 id="work-h">세트로 보기</h2>
+  <div id="strips"></div>
+</section>
+
+<section class="steps" aria-labelledby="steps-h">
+  <div class="steps-top">
+    <h2 id="steps-h">주문부터 게시까지</h2>
+  </div>
+  <ol class="row" id="steps-row">
+    <li><h3>주문하기</h3><p>가게 이름, 인스타 계정, 알리고 싶은 내용을 보내주세요. 사진이 있으면 함께요.</p><img src="work/cafe-0.jpg" width="540" height="675" alt="카페 표지 카드" loading="lazy" style="margin-top:96px"></li>
+    <li><h3>하루 안에 초안</h3><p>업종 분위기에 맞춘 색과 글꼴로 5장을 만들고, 문구도 함께 써서 보내드려요.</p><img src="work/nail-1.jpg" width="540" height="675" alt="네일숍 컬러 소개 카드" loading="lazy" style="margin-top:40px"></li>
+    <li><h3>두 번까지 수정</h3><p>가격이 바뀌었거나 문구가 마음에 안 들면 말씀만 하세요. 두 번까지 무료예요.</p><img src="work/flower-2.jpg" width="540" height="675" alt="꽃집 꽃다발 카드" loading="lazy" style="margin-top:128px"></li>
+    <li><h3>파일 받기</h3><p>인스타에 바로 올릴 이미지 5장과, 다음에 직접 고칠 수 있는 Canva 링크를 드려요.</p><img src="work/bakery-1.jpg" width="540" height="675" alt="빵집 시간표 카드" loading="lazy" style="margin-top:64px"></li>
+    <li><h3>예약 게시</h3><p>월 운영 패키지라면 올리는 날짜와 시간까지 맞춰 예약해 둡니다.</p><img src="work/scent-0.jpg" width="540" height="675" alt="향수 팁 표지 카드" loading="lazy" style="margin-top:112px"></li>
+  </ol>
+</section>
+
+<section class="price" id="price" aria-labelledby="price-h">
+  <table class="plans">
+    <caption class="sr">가격표</caption>
+    <thead>
+      <tr>
+        <th scope="col"><h2 id="price-h">가격</h2></th>
+        <th scope="col"><span class="pn">기본</span><span class="pp">30,000원</span><span class="per">한 세트</span></th>
+        <th scope="col" class="pick"><span class="pn">세 세트</span><span class="pp">80,000원</span><span class="per">한 번에 주문</span></th>
+        <th scope="col"><span class="pn">월 운영</span><span class="pp">250,000원</span><span class="per">한 달</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><th scope="row">카드뉴스</th><td>5장 1세트</td><td class="pick">5장 3세트</td><td>5장 8세트</td></tr>
+      <tr><th scope="row">문구 작성</th><td>포함</td><td class="pick">포함</td><td>포함</td></tr>
+      <tr><th scope="row">수정</th><td>세트마다 2번</td><td class="pick">세트마다 2번</td><td>세트마다 2번</td></tr>
+      <tr><th scope="row">초안 전달</th><td>24시간 안</td><td class="pick">48시간 안</td><td>매주 2세트</td></tr>
+      <tr><th scope="row">Canva 편집 링크</th><td>포함</td><td class="pick">포함</td><td>포함</td></tr>
+      <tr><th scope="row">인스타 예약 게시</th><td>없음</td><td class="pick">없음</td><td>날짜·시간 맞춰 예약</td></tr>
+      <tr class="act"><th scope="row"><span class="sr">주문</span></th>
+        <td><a class="btn" href="#order" data-plan="기본">기본 주문</a></td>
+        <td class="pick"><a class="btn inv" href="#order" data-plan="세 세트">세 세트 주문</a></td>
+        <td><a class="btn" href="#order" data-plan="월 운영">월 운영 상담</a></td></tr>
+    </tbody>
+  </table>
+  <div class="plans-m">
+    <h2>가격</h2>
+    <div class="pm"><p class="pn">기본 30,000원</p><dl><dt>카드뉴스</dt><dd>5장 1세트</dd><dt>수정</dt><dd>2번</dd><dt>초안 전달</dt><dd>24시간 안</dd><dt>예약 게시</dt><dd>없음</dd></dl><a class="btn" href="#order" data-plan="기본">기본 주문</a></div>
+    <div class="pm pick"><p class="pn">세 세트 80,000원</p><dl><dt>카드뉴스</dt><dd>5장 3세트</dd><dt>수정</dt><dd>세트마다 2번</dd><dt>초안 전달</dt><dd>48시간 안</dd><dt>예약 게시</dt><dd>없음</dd></dl><a class="btn inv" href="#order" data-plan="세 세트">세 세트 주문</a></div>
+    <div class="pm"><p class="pn">월 운영 250,000원</p><dl><dt>카드뉴스</dt><dd>5장 8세트</dd><dt>수정</dt><dd>세트마다 2번</dd><dt>초안 전달</dt><dd>매주 2세트</dd><dt>예약 게시</dt><dd>날짜·시간 맞춰 예약</dd></dl><a class="btn" href="#order" data-plan="월 운영">월 운영 상담</a></div>
+  </div>
+  <p class="launch">첫 주문 다섯 분까지는 기본 세트를 15,000원에 해드려요. 대신 작업이 마음에 드시면 짧은 후기 한 줄 부탁드립니다.</p>
+</section>
+
+<section class="faq" aria-labelledby="faq-h">
+  <h2 id="faq-h">자주 묻는 질문</h2>
+  <div class="answers">
+    <p><b>사진이 없어도 되나요?</b> 네. 이 페이지의 샘플처럼 그림과 글자로 만들 수 있어요. 메뉴 사진이 있으면 훨씬 좋아지니, 휴대폰으로 찍은 것도 보내주세요.</p>
+    <p><b>문구를 직접 써야 하나요?</b> 아니요. 가게 이름과 알리고 싶은 내용만 알려주시면 문구는 제가 씁니다. 원하는 말투가 있으면 말씀해 주세요.</p>
+    <p><b>얼마나 걸리나요?</b> 기본 세트는 주문 후 24시간 안에 초안을 드려요. 수정은 보통 당일 반영합니다.</p>
+    <p><b>어떤 파일로 받나요?</b> 인스타 피드 비율(4:5)의 이미지 5장과 Canva 편집 링크를 드려요. 다음에 가격만 바꾸고 싶을 때 직접 고칠 수 있어요.</p>
+    <p><b>수정을 두 번 넘게 하고 싶으면요?</b> 세 번째부터는 한 번에 5,000원이에요. 오타나 제 실수는 횟수에 넣지 않습니다.</p>
+    <p><b>인스타에 대신 올려주나요?</b> 월 운영 패키지에서는 날짜와 시간을 정해 예약 게시까지 해드려요. 기본과 세 세트는 파일만 드립니다.</p>
+    <p><b>우리 가게 색이나 로고가 있어요.</b> 보내주시면 그 색과 로고에 맞춰 만들어요. 없으면 업종 분위기에 맞는 색을 제안드립니다.</p>
+    <p><b>결제는 어떻게 하나요?</b> 크몽을 통해 주문하시면 크몽 결제로 진행돼요. 작업이 끝나고 확인하신 뒤에 정산됩니다.</p>
+  </div>
+</section>
+
+<section class="order" id="order" aria-labelledby="order-h">
+  <div class="strip" aria-hidden="true"><div class="strip-track" id="strip-track"></div></div>
+  <div class="order-head">
+    <h2 id="order-h">주문 문의</h2>
+    <p>가게 이름과 인스타 계정만 적어주세요. 알리고 싶은 내용과 사진은 열리는 메일에 이어서 쓰시면 돼요. 하루 안에 답장드립니다.</p>
+  </div>
+  <form class="cells" id="order-form">
+    <label class="sr" for="o-shop">가게 이름</label>
+    <input id="o-shop" name="shop" placeholder="가게 이름" required autocomplete="organization">
+    <label class="sr" for="o-insta">인스타 계정</label>
+    <input id="o-insta" name="insta" placeholder="인스타 계정 (예: @my_shop)" autocomplete="off">
+    <button type="submit">문의 메일 쓰기</button>
+  </form>
+  <div class="cells-note">
+    <p id="o-plan-note">원하는 상품을 고르지 않으셨다면 기본 세트로 안내드려요.</p>
+    <p>버튼을 누르면 내용이 채워진 메일 창이 열려요.</p>
+  </div>
+</section>
+</main>
+
+<footer class="tiles">
+  <div class="t t-state"><p>작은 가게의 소식을, 손님이 저장하고 싶은 카드로 만듭니다.</p><small>© 2026 가게피드 · 샘플 작업의 가게 이름과 가격은 가상입니다 · 글꼴 Pretendard (OFL)</small></div>
+  <ul class="t t-nav"><li><a href="#work">작업</a></li><li><a href="#price">가격</a></li><li><a href="#order">주문 문의</a></li><li><a href="https://www.instagram.com/my_scent.lab/">@my_scent.lab</a></li></ul>
+  <div class="t t-time"><p>서울</p><p id="clock">오전 9:00</p></div>
+  <div class="t t-mail"><a id="mail-link" href="#order">메일로 문의하기</a></div>
+  <div class="t t-word" aria-hidden="true">가게피드</div>
+  <a class="t t-go" href="#order"><span>주문하러 가기</span>
+    <svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true"><path d="M14 50 L50 14 M22 14 H50 V42" fill="none" stroke="currentColor" stroke-width="4"/></svg></a>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!doctype html>
+<!-- 포트폴리오 샘플 카드뉴스 생성기: cards.html?s=<세트>&i=<장> 을 540x675 창에서 2배율로 캡처한다 -->
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: "Pretendard"; font-weight: 400; src: url(../fonts/Pretendard-Regular.subset.woff2) format("woff2"); }
+  @font-face { font-family: "Pretendard"; font-weight: 500; src: url(../fonts/Pretendard-Medium.subset.woff2) format("woff2"); }
+  @font-face { font-family: "Pretendard"; font-weight: 700; src: url(../fonts/Pretendard-Bold.subset.woff2) format("woff2"); }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 540px; height: 675px; overflow: hidden; background: #000; }
+  body { font-family: "Pretendard", sans-serif; word-break: keep-all; }
+  .card { position: relative; width: 540px; height: 675px; padding: 48px 44px; background: var(--bg); color: var(--ink); overflow: hidden; }
+  .shop { font-size: 17px; font-weight: 500; color: var(--sub); }
+  .title { font-size: 52px; font-weight: 700; line-height: 1.18; letter-spacing: -0.03em; margin-top: 26px; }
+  .lead { font-size: 21px; font-weight: 500; color: var(--sub); margin-top: 16px; line-height: 1.45; }
+  .handle { position: absolute; left: 44px; bottom: 40px; font-size: 16px; font-weight: 500; color: var(--sub); }
+  .art { position: absolute; }
+  .num { font-size: 17px; font-weight: 700; color: var(--accent); }
+  .name { font-size: 44px; font-weight: 700; letter-spacing: -0.03em; margin-top: 10px; line-height: 1.2; }
+  .panel { position: absolute; left: 32px; right: 32px; top: 196px; bottom: 32px; background: var(--panel); border-radius: 22px; padding: 30px; text-align: center; }
+  .panel .art { position: static; display: block; margin: 0 auto; }
+  .desc { font-size: 19px; line-height: 1.6; color: var(--ink); margin-top: 18px; }
+  .price { font-size: 30px; font-weight: 700; color: var(--accent); margin-top: 18px; }
+  .end { background: var(--accent); color: var(--onaccent); }
+  .end .title { color: var(--onaccent); margin-top: 150px; }
+  .end .info { font-size: 19px; line-height: 1.75; margin-top: 30px; color: var(--onaccent); opacity: .92; }
+  .end .handle { color: var(--onaccent); opacity: .85; }
+  .bar { width: 64px; height: 4px; background: var(--onaccent); margin-top: 28px; }
+  .tip { font-size: 120px; font-weight: 700; line-height: 1; color: var(--accent); opacity: .18; position: absolute; right: 36px; top: 30px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+// ---- 그림: 모두 직접 그린 SVG ----
+const A = {
+  latte: `<svg viewBox="0 0 512 512"><ellipse cx="256" cy="402" rx="172" ry="40" fill="#E8DCCB"/><ellipse cx="256" cy="396" rx="124" ry="24" fill="#D6C3AA"/><path d="M368 252 C442 244 446 336 362 342" fill="none" stroke="#F6E6D2" stroke-width="28" stroke-linecap="round"/><path d="M130 222 L382 222 C382 302 370 360 340 386 Q256 412 172 386 C142 360 130 302 130 222 Z" fill="#FBF1E4"/><path d="M300 222 L382 222 C382 302 370 360 340 386 Q318 393 296 397 C322 360 312 282 300 222 Z" fill="#EBD7BE"/><ellipse cx="256" cy="222" rx="126" ry="34" fill="#FBF1E4"/><ellipse cx="256" cy="224" rx="108" ry="25" fill="#B5784A"/><path d="M256 238 C230 224 222 212 236 206 C246 202 254 208 256 213 C258 208 266 202 276 206 C290 212 282 224 256 238 Z" fill="#FBF1E4"/><path d="M220 170 C204 150 236 138 220 112" fill="none" stroke="#E2C29B" stroke-width="12" stroke-linecap="round"/><path d="M276 166 C260 146 292 134 276 104" fill="none" stroke="#E2C29B" stroke-width="12" stroke-linecap="round"/></svg>`,
+  leaf: `<svg viewBox="0 0 512 512"><path d="M256 372 L256 452" stroke="#8A4B2A" stroke-width="14" stroke-linecap="round"/><polygon points="256,60 282,140 332,112 322,192 404,158 384,222 452,244 372,292 392,334 300,316 266,372 246,372 212,316 120,334 140,292 60,244 128,222 108,158 190,192 180,112 230,140" fill="#E07A3F" stroke="#E07A3F" stroke-width="14" stroke-linejoin="round"/><polygon points="256,60 282,140 332,112 322,192 404,158 384,222 452,244 372,292 392,334 300,316 266,372 256,372" fill="#C9612F" stroke="#C9612F" stroke-width="14" stroke-linejoin="round" opacity="0.55"/></svg>`,
+  chestnut: `<svg viewBox="0 0 512 512"><path d="M256 104 C332 166 400 228 400 310 C400 382 340 422 256 422 C172 422 112 382 112 310 C112 228 180 166 256 104 Z" fill="#7A3E22"/><path d="M256 104 C332 166 400 228 400 310 C400 382 340 422 256 422 C300 380 318 250 256 104 Z" fill="#5E2E18"/><path d="M116 332 C140 400 200 422 256 422 C312 422 372 400 396 332 C340 364 172 364 116 332 Z" fill="#D9A86C"/><path d="M244 110 L256 82 L268 110 Z" fill="#D9A86C"/><ellipse cx="196" cy="236" rx="22" ry="54" transform="rotate(28 196 236)" fill="#fff" opacity=".22"/></svg>`,
+  pound: `<svg viewBox="0 0 512 512"><ellipse cx="270" cy="414" rx="190" ry="26" fill="#E8DCCB"/><path d="M372 222 L414 196 L414 372 L372 404 Z" fill="#D9A15A"/><rect x="122" y="214" width="250" height="190" rx="16" fill="#F2C980"/><path d="M122 232 C122 160 372 160 372 232 L372 240 L122 240 Z" fill="#B8693A"/><g fill="#FBE7B0" stroke="#E5A63E" stroke-width="5"><rect x="160" y="268" width="40" height="34" rx="8" transform="rotate(-12 180 285)"/><rect x="286" y="262" width="44" height="34" rx="8" transform="rotate(10 308 279)"/><rect x="214" y="336" width="42" height="32" rx="8"/></g><path d="M246 300 C246 286 270 286 270 302 C270 322 236 324 234 300 C232 274 278 270 282 302" fill="none" stroke="#B8693A" stroke-width="7" stroke-linecap="round"/></svg>`,
+  nail: c => `<svg viewBox="0 0 512 512"><path d="M196 470 L196 230 C196 150 316 150 316 230 L316 470 Z" fill="#F1CDB8"/><path d="M216 250 C216 182 296 182 296 250 L296 330 C296 352 216 352 216 330 Z" fill="${c}"/><ellipse cx="238" cy="236" rx="9" ry="30" fill="#fff" opacity=".35"/></svg>`,
+  bouquet: (a,b) => `<svg viewBox="0 0 512 512"><path d="M200 300 L256 470 L312 300 Z" fill="#C9B79C"/><path d="M256 300 L256 470 L312 300 Z" fill="#B5A285"/><g fill="#6E8B5B"><ellipse cx="170" cy="230" rx="22" ry="54" transform="rotate(-35 170 230)"/><ellipse cx="342" cy="230" rx="22" ry="54" transform="rotate(35 342 230)"/></g>${[[256,170,a],[196,226,b],[316,226,b],[256,254,a],[226,140,b],[288,140,b]].map(([x,y,f])=>`<g transform="translate(${x} ${y})">${[0,72,144,216,288].map(r=>`<ellipse cx="0" cy="-24" rx="17" ry="26" fill="${f}" transform="rotate(${r})"/>`).join('')}<circle r="13" fill="#F3D27A"/></g>`).join('')}</svg>`,
+  bread: k => ({
+    loaf: `<svg viewBox="0 0 512 512"><rect x="120" y="230" width="272" height="170" rx="18" fill="#E2A65E"/><path d="M120 250 C120 150 220 150 220 230 C220 150 292 150 292 230 C292 150 392 150 392 250 Z" fill="#C8833F"/><rect x="120" y="380" width="272" height="20" fill="#B87434"/></svg>`,
+    salt: `<svg viewBox="0 0 512 512"><path d="M96 330 C120 220 392 220 416 330 C400 372 112 372 96 330 Z" fill="#D9984F"/><path d="M150 300 C190 250 322 250 362 300" fill="none" stroke="#B9763A" stroke-width="12" stroke-linecap="round"/><path d="M190 270 C220 240 292 240 322 270" fill="none" stroke="#B9763A" stroke-width="10" stroke-linecap="round"/><g fill="#fff">${[[200,300],[256,280],[310,302],[236,320],[286,322]].map(([x,y])=>`<rect x="${x}" y="${y}" width="9" height="9" transform="rotate(20 ${x} ${y})"/>`).join('')}</g></svg>`,
+    baguette: `<svg viewBox="0 0 512 512"><g transform="rotate(-28 256 256)"><rect x="70" y="210" width="372" height="92" rx="46" fill="#D69A52"/>${[150,220,290,360].map(x=>`<path d="M${x-26} 236 C${x-6} 250 ${x+6} 262 ${x+26} 276" stroke="#F1D19A" stroke-width="12" stroke-linecap="round" fill="none"/>`).join('')}</g></svg>`
+  })[k],
+  bottle: (c) => `<svg viewBox="0 0 512 512"><rect x="226" y="96" width="60" height="44" rx="6" fill="#2B2622"/><rect x="214" y="138" width="84" height="26" rx="4" fill="#B9A58A"/><rect x="146" y="162" width="220" height="250" rx="34" fill="${c}"/><rect x="146" y="162" width="220" height="250" rx="34" fill="#fff" opacity=".12"/><rect x="186" y="246" width="140" height="80" rx="6" fill="#FBF7EF"/><rect x="206" y="270" width="100" height="10" rx="5" fill="#2B2622" opacity=".7"/><rect x="226" y="292" width="60" height="8" rx="4" fill="#2B2622" opacity=".4"/></svg>`
+};
+
+// ---- 다섯 개 샘플 세트 (가게 이름·가격은 모두 가상, 향수 세트만 실제 계정 콘텐츠) ----
+const SETS = [
+  { key: "cafe", shop: "오늘의 온도 커피", handle: "@today_ondo_coffee",
+    c: { bg: "#F5EBE0", panel: "#FDF8F3", ink: "#2B1A10", sub: "#8A5A3B", accent: "#8A5A3B", onaccent: "#FDF5EF" },
+    cover: { title: "가을 한정 메뉴<br>3가지", lead: "11월 30일까지만 만나요", art: A.leaf },
+    items: [
+      { n: "MENU 01", name: "단호박 라떼", art: A.latte, desc: "국내산 단호박을 직접 끓여<br>부드럽고 달콤하게.", price: "6,500원" },
+      { n: "MENU 02", name: "밤 크림 슈페너", art: A.chestnut, desc: "진한 에스프레소 위에<br>고소한 밤 크림을 듬뿍.", price: "7,000원" },
+      { n: "MENU 03", name: "사과 시나몬 파운드", art: A.pound, desc: "조린 사과를 듬뿍 넣어<br>포근하게 구웠어요.", price: "5,500원" } ],
+    end: { title: "따뜻한 한 잔이<br>생각나는 날엔", info: "서울 마포구 연남로 12<br>매일 10:00 – 21:00 · 월요일 휴무" } },
+  { key: "nail", shop: "손끝 살롱", handle: "@sonkkeut_salon",
+    c: { bg: "#F4E4E4", panel: "#FBF3F2", ink: "#3A1D24", sub: "#8E4A57", accent: "#7E2F40", onaccent: "#FBEFF0" },
+    cover: { title: "11월엔<br>가을 컬러", lead: "이번 달 시즌 컬러 20% 할인", art: A.nail("#7E2F40") },
+    items: [
+      { n: "COLOR 01", name: "버건디 와인", art: A.nail("#6E1F33"), desc: "깊고 차분한 레드.<br>니트 소매 끝에 잘 어울려요.", price: "원컬러 36,000원" },
+      { n: "COLOR 02", name: "카멜 브라운", art: A.nail("#B07848"), desc: "코트 색과 맞추기 좋은<br>따뜻한 브라운.", price: "원컬러 36,000원" },
+      { n: "COLOR 03", name: "올리브 그린", art: A.nail("#6F7445"), desc: "흔하지 않은 가을 그린.<br>짧은 손톱에 특히 예뻐요.", price: "원컬러 36,000원" } ],
+    end: { title: "예약은<br>DM으로 받아요", info: "서울 성동구 서울숲길 8, 2층<br>화–일 11:00 – 20:00" } },
+  { key: "flower", shop: "작은 들꽃", handle: "@small_wildflower",
+    c: { bg: "#E8EDE2", panel: "#F6F8F2", ink: "#1F2A1B", sub: "#55704A", accent: "#4F6B43", onaccent: "#F4F7EF" },
+    cover: { title: "가을 꽃다발<br>3가지", lead: "하루 전까지 예약하면 준비해 둘게요", art: A.bouquet("#E58A4E", "#F2C46B") },
+    items: [
+      { n: "BOUQUET 01", name: "오렌지 노을", art: A.bouquet("#E58A4E", "#F2C46B"), desc: "주황 장미와 소국을 섞은<br>노을빛 꽃다발.", price: "35,000원" },
+      { n: "BOUQUET 02", name: "라벤더 오후", art: A.bouquet("#A992C9", "#E6D9F0"), desc: "연보라 카네이션과 스타티스.<br>선물용으로 가장 많이 찾아요.", price: "42,000원" },
+      { n: "BOUQUET 03", name: "크림 한 줌", art: A.bouquet("#F3E6CF", "#E9C9A6"), desc: "크림 톤 장미 한 줌.<br>작지만 오래 가요.", price: "28,000원" } ],
+    end: { title: "꽃이 필요한 날,<br>작은 들꽃", info: "경기 수원시 팔달구 화서문로 31<br>매일 10:00 – 19:00" } },
+  { key: "bakery", shop: "새벽 오븐", handle: "@saebyeok_oven",
+    c: { bg: "#E6E9EF", panel: "#F6F7FA", ink: "#18233A", sub: "#4A5A7A", accent: "#26375E", onaccent: "#F3F5FA" },
+    cover: { title: "빵 나오는<br>시간표", lead: "갓 구운 빵, 이 시간에 오세요", art: A.bread("loaf") },
+    items: [
+      { n: "08:00", name: "우유 식빵", art: A.bread("loaf"), desc: "아침 첫 빵.<br>결대로 찢어지는 식빵이에요.", price: "4,800원" },
+      { n: "11:00", name: "소금빵", art: A.bread("salt"), desc: "버터 듬뿍, 겉은 바삭.<br>한 판에 30개만 구워요.", price: "2,800원" },
+      { n: "15:00", name: "바게트", art: A.bread("baguette"), desc: "오후 세 시에 한 번 더.<br>저녁 식탁에 올리기 좋아요.", price: "4,000원" } ],
+    end: { title: "오늘 빵도<br>잘 구워졌어요", info: "대전 유성구 대학로 77<br>화–일 07:30 – 20:00" } },
+  { key: "scent", shop: "my_scent.lab", handle: "@my_scent.lab",
+    c: { bg: "#EFEAE2", panel: "#FAF7F2", ink: "#1E1A16", sub: "#6B5E50", accent: "#2B2622", onaccent: "#F4EFE6" },
+    cover: { title: "향수, 오래<br>남기는 법", lead: "사놓고 안 쓰는 향수가 생기는 이유", art: A.bottle("#C9A27A") },
+    items: [
+      { n: "TIP 01", name: "피부로 고르기", art: A.bottle("#B98E8E"), desc: "시향지 말고 손목에.<br>30분 뒤 남는 향이 진짜예요.", price: "" },
+      { n: "TIP 02", name: "온도 따라 뿌리기", art: A.bottle("#8FA3A6"), desc: "여름엔 적게, 낮게.<br>겨울엔 높게, 여유 있게.", price: "" },
+      { n: "TIP 03", name: "맥박 위에 한 번", art: A.bottle("#A7A07A"), desc: "손목·목 뒤처럼 따뜻한 곳.<br>문지르지 말고 그대로.", price: "" } ],
+    end: { title: "저장해두고<br>다음에 써보세요", info: "향을 고르는 이야기를<br>매주 올려요" } }
+];
+
+const q = new URLSearchParams(location.search);
+const s = SETS[+q.get("s") || 0], i = +q.get("i") || 0;
+// blank=1: 라이브 미리보기용으로 가게 이름과 계정을 비운 표지
+if (q.get("blank")) { s.shop = "&nbsp;"; s.handle = ""; }
+const root = document.getElementById("root");
+Object.entries(s.c).forEach(([k, v]) => document.body.style.setProperty("--" + k, v));
+if (i === 0) {
+  root.innerHTML = `<div class="card"><div class="shop">${s.shop}</div><div class="title">${s.cover.title}</div><div class="lead">${s.cover.lead}</div>
+    <div class="art" style="right:-30px;bottom:30px;width:400px;height:400px">${s.cover.art}</div><div class="handle">${s.handle}</div></div>`;
+} else if (i <= 3) {
+  const it = s.items[i - 1];
+  root.innerHTML = `<div class="card"><div class="num">${it.n}</div><div class="name">${it.name}</div>
+    <div class="panel"><div class="art" style="width:230px;height:230px">${it.art}</div><div class="desc">${it.desc}</div>${it.price ? `<div class="price">${it.price}</div>` : ""}</div></div>`;
+} else {
+  root.innerHTML = `<div class="card end"><div class="title">${s.end.title}</div><div class="bar"></div><div class="info">${s.end.info}</div><div class="handle">${s.handle}</div></div>`;
+}
+root.querySelectorAll("svg").forEach(v => { v.setAttribute("width", "100%"); v.setAttribute("height", "100%"); });
+</script>
+</body>
+</html>
